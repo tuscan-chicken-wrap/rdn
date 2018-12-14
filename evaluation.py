@@ -51,7 +51,7 @@ def rocCompareWithAlgos(dataFrame, rdnPredictionResults):
     plt.ylim([0.0, 1.0])        
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
-    plt.title('ROC curves')
+    plt.title('ROC curves: ' + dataFrame.name)
     plot_roc('lr', y_test, y_test_pred_lr)
     plot_roc('knn', y_test, y_test_pred_knn)
     plot_roc('rf', y_test, y_test_pred_rf)
