@@ -303,7 +303,11 @@ def booleanizeViaMedian(init_features_old, listOfFeatures):
 
 from rmllib.data.base import Dataset
 from rmllib.data.base import class_transform_to_dataframe
-from rmllib.data.generate import matched_edge_generator
+#from rmllib.data.generate import matched_edge_generator
+from matched_edge_generator import matched_edge_generator
+#import imp
+#imp.reload(matched_edge_generator)
+#print(matched_edge_generator.__file__)
 
 #Instead of discretized values, try using present/notpresent
 # Test data with custom links - just absences, just father's education and see if it can predict anything.
@@ -324,7 +328,7 @@ class AcademicPerformance(Dataset):
 		super().__init__(**kwargs)
 		data, target, feature_names = load_data(395, 92)  #We have 395 students, and 92 features (+1 label)
 		#print("Features: " + str(feature_names))
-		print("\nLoading data!\n");
+		#print("\nLoading data!\n");
 		init_features = pandas.DataFrame(data, columns=feature_names[:-1])
 		#print(feature_names[:-1])
 
@@ -368,7 +372,9 @@ class AcademicPerformance(Dataset):
 
 		# Simple correlation for edges       
 		#self.edges = matched_edge_generator(self.labels, **kwargs)
-		self.edges = matched_edge_generator(self.labels, mu_match= 0.5, mu_nomatch = 0.5, **kwargs)
+		#self.edges = matched_edge_generator(self.labels, mu_match= 0.5, mu_nomatch = 0.5, **kwargs)
+		self.edges = matched_edge_generator(self.labels, **kwargs)
+		#print("\nHELP\n")
 		#self.edges = 
 		
 		return

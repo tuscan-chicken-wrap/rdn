@@ -4,7 +4,8 @@ import numpy as np
 
 from rmllib.data.base import Dataset
 from rmllib.data.base import class_transform_to_dataframe
-from rmllib.data.generate import matched_edge_generator
+#from rmllib.data.generate import matched_edge_generator
+from matched_edge_generator import matched_edge_generator
 from random_edge_generator import random_edge_generator
 from sklearn.preprocessing import OneHotEncoder
 
@@ -58,8 +59,9 @@ class Cora(Dataset):
         self.features = class_transform_to_dataframe(init_features.values, islabel=False, classes=init_features.columns.values)
 
         # Simple correlation for edges
-        self.edges = matched_edge_generator(self.labels, mu_match = 0.55, mu_nomatch = 0.45, **kwargs)
-        # self.edges = matrix
+        #self.edges = matched_edge_generator(self.labels, mu_match = 0.5, mu_nomatch = 0.5, **kwargs)
+        #self.edges = matched_edge_generator(self.labels, **kwargs)
+        self.edges = matrix
         # self.edges = random_edge_generator(self.labels, **kwargs)
 
         return

@@ -7,7 +7,7 @@ import scipy
 import time
 import itertools
 
-from base import LocalModel
+from base_new import LocalModel
 
 class RelationalNaiveBayes(LocalModel):
     '''
@@ -97,7 +97,8 @@ class RelationalNaiveBayes(LocalModel):
             base_conditionals = np.exp(base_logits.values)
 
 
-
+        #print("\n BASE CONDITIONALS \n")
+        #print(base_conditionals)
         # Relational Joint Predictions
         base_conditionals += 5e-13
         predictions = base_conditionals / base_conditionals.sum(axis=1)[:, np.newaxis]
@@ -138,7 +139,7 @@ class RelationalNaiveBayes(LocalModel):
         featuresArray = np.full_like(data.features.values[0,:], 0.0)
 
 		#This is the same as before, only summing over Pr(X_neighbors | Y) instead of Pr(X | Y)
-        if(self.neighbor_flag == 1):
+        if(self.neighbor_flag == 1 and self.learn_method == "r_iid"):
             for ycl in data.labels.Y.columns:
                 featuresArray = np.add(featuresArray, self.feature_log_prob_y_given_neighbor_x_.loc[ycl,:].values)
             ind = np.argpartition(featuresArray, -k)[-k:]  #Get the indices of the k largest values for prob y given x neighbors

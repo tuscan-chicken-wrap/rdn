@@ -7,7 +7,8 @@ import numpy.random as rnd
 import pandas
 from scipy.sparse import csr_matrix, bsr_matrix
 
-def matched_edge_generator(labels, mu_match=.52, mu_nomatch=.48, std=.3, sparsity=95, symmetric=True, remove_loops=True, sparse=True, **kwargs):
+#def matched_edge_generator(labels, mu_match=.52, mu_nomatch=.48, std=.3, sparsity=95, symmetric=True, remove_loops=True, sparse=True, **kwargs):
+def matched_edge_generator(labels, mu_match=0.75, mu_nomatch=0.25, std=.3, sparsity=95, symmetric=True, remove_loops=True, sparse=True, **kwargs):
     '''
     Generates a network given a set of labels.  If the labels are equal, samples from a normal
     with one std, and if they aren't equal it samples from another.  Sparsity sets the cutoff point.
@@ -21,7 +22,7 @@ def matched_edge_generator(labels, mu_match=.52, mu_nomatch=.48, std=.3, sparsit
     :remove_loops: Take out self loops (generally good)
     '''
 	
-	print("\nCan I actually see this???\n")
+    #print("\nCan I actually see this???\n")
 
     # Build matrix of mu values
     labels = labels.Y.copy()
